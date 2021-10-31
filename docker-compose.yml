@@ -16,7 +16,7 @@ services:
 
   # PHP Service
   php:
-    build: ./.docker/php
+    build: ./.docker
     working_dir: ${COMPOSE_WORKING_DIR}
     volumes:
       - ./:${COMPOSE_WORKING_DIR}
@@ -30,7 +30,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: ${COMPOSE_PROJECT_NAME}
     volumes:
-      - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./.docker/mysql/my.conf:/etc/mysql/conf.d/my.conf
       - mysqldata:/var/lib/mysql
     healthcheck:
       test: mysqladmin ping -h 127.0.0.1 -u root --password=$$MYSQL_ROOT_PASSWORD

@@ -3,8 +3,8 @@
 echo "<h1>Hello</h1>";
 
 
-$connection = new PDO('mysql:host=mysql;dbname=demo;charset=utf8', 'root', 'root');
-$query = $connection->query("SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'demo'");
+$connection = new PDO('mysql:host=mysql;dbname=timetracker;charset=utf8', 'root', 'root');
+$query = $connection->query("SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'timetracker'");
 $tables = $query->fetchAll(PDO::FETCH_COLUMN);
 
 if (empty($tables)) {
