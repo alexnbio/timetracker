@@ -9,7 +9,7 @@ services:
     ports:
       - 85:80
     volumes:
-      - ./src:/var/www/php
+      - ./:${COMPOSE_WORKING_DIR}
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d
     depends_on:
       - php
@@ -17,9 +17,9 @@ services:
   # PHP Service
   php:
     build: ./.docker/php
-    working_dir: /var/www/php
+    working_dir: ${COMPOSE_WORKING_DIR}
     volumes:
-      - ./src:/var/www/php
+      - ./:${COMPOSE_WORKING_DIR}
     depends_on:
       - mysql
 
@@ -28,7 +28,7 @@ services:
     image: mysql:8
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: demo
+      MYSQL_DATABASE: ${COMPOSE_PROJECT_NAME}
     volumes:
       - ./.docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
       - mysqldata:/var/lib/mysql
