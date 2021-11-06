@@ -16,4 +16,6 @@ if (empty($tables)) {
         echo "<li>{$table}</li>";
     }
     echo '</ul>';
+
 }
+//xdebug_info();

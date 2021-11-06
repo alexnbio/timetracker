@@ -13,15 +13,20 @@ services:
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d
     depends_on:
       - php
-
+    
   # PHP Service
   php:
-    build: ./.docker
+    build: 
+      context: ./.docker
     working_dir: ${COMPOSE_WORKING_DIR}
     volumes:
       - ./:${COMPOSE_WORKING_DIR}
     depends_on:
       - mysql
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - XDEBUG_TRIGGER=${PHP_IDEKEY}
 
   # MySQL Service
   mysql:

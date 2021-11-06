@@ -6,10 +6,16 @@ RUN apt-get update \
     && pecl install apcu \
     && docker-php-ext-enable apcu \
     && docker-php-ext-configure zip \
-    && docker-php-ext-install zip
+    && docker-php-ext-install zip \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug
+    
 
 # Copy system configs
 COPY ./config /usr/local/etc
+COPY ./var /var
+RUN chmod 777 -R /var/log
+
 # Copy the 'local' php.ini-development into php.ini
 RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
 
