@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.9'
 
 # Services
 services:
@@ -13,10 +13,10 @@ services:
       - ./.docker/nginx/conf.d:/etc/nginx/conf.d
     depends_on:
       - php
-    
+  
   # PHP Service
   php:
-    build: 
+    build:
       context: ./.docker
     working_dir: ${COMPOSE_WORKING_DIR}
     volumes:
